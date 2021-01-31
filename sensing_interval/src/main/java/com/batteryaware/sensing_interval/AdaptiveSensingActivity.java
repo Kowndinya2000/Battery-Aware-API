@@ -9,15 +9,16 @@ import android.os.BatteryManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdaptiveSensingActivity  extends AppCompatActivity {
-    public int deviceStatus;
-    public boolean intentComplete = false;
-    public int batteryLevel;
-    public String batteryState;
+    public static int deviceStatus;
+    public static boolean intentComplete = false;
+    public static int batteryLevel;
+    public static String batteryState;
+    public static Context context;
 //    public static final long  Original_UPDATE_INTERVAL_IN_MILLISECONDS = 13000;
 //    public static  long UPDATE_INTERVAL_IN_MILLISECONDS = 13000;
-    IntentFilter intentfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-    protected int batteryLevel(){
-        AdaptiveSensingActivity.this.registerReceiver(broadcastreceiver,intentfilter);
+    public static IntentFilter intentfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    public static int batteryLevel(){
+        context.getApplicationContext().registerReceiver(broadcastreceiver,intentfilter);
         while(true)
         {
             if(intentComplete)
@@ -26,12 +27,12 @@ public class AdaptiveSensingActivity  extends AppCompatActivity {
                 break;
             }
         }
-        return getBatteryLevel();
-    }
-    private int getBatteryLevel(){
         return batteryLevel;
     }
-    private final BroadcastReceiver broadcastreceiver = new BroadcastReceiver() {
+    public static int getBatteryLevel(){
+        return batteryLevel();
+    }
+    private static BroadcastReceiver broadcastreceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             deviceStatus = intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1);
