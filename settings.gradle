@@ -1,0 +1,3 @@
+include ':sensing_interval'
+include ':app'
+rootProject.name = "BatteryAwareApi"
