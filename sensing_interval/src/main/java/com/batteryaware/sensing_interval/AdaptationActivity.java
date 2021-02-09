@@ -25,7 +25,7 @@ public class AdaptationActivity extends Activity {
     public void levelReturned(){
         returned = true;
     }
-    public int returnLevel() throws InterruptedException {
+    public int returnLevel() {
         returned = false;
         this.registerReceiver(this.InformationReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 //        while(true)
@@ -35,7 +35,13 @@ public class AdaptationActivity extends Activity {
 //                break;
 //            }
 //        }
-        TimeUnit.SECONDS.sleep(2);
+        //
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        }
+        catch(Exception e){
+            System.out.println("Fallen into exception");
+        }
         return level;
     }
 
