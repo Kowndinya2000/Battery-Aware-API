@@ -30,9 +30,10 @@ public class AdaptationActivity extends Activity {
         {
             if(returned)
             {
-                return level;
+                break;
             }
         }
+        return level;
     }
 
     @Override
