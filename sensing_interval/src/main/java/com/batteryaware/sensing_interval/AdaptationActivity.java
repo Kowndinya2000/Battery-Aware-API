@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import java.util.concurrent.TimeUnit;
+
 public class AdaptationActivity extends Activity {
     public int level;
     public Boolean returned = false;
@@ -23,16 +25,17 @@ public class AdaptationActivity extends Activity {
     public void levelReturned(){
         returned = true;
     }
-    public int returnLevel(){
+    public int returnLevel() throws InterruptedException {
         returned = false;
         this.registerReceiver(this.InformationReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        while(true)
-        {
-            if(returned)
-            {
-                break;
-            }
-        }
+//        while(true)
+//        {
+//            if(returned)
+//            {
+//                break;
+//            }
+//        }
+        TimeUnit.SECONDS.sleep(2);
         return level;
     }
 
