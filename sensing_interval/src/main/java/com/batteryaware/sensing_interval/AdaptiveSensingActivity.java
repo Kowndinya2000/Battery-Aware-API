@@ -16,8 +16,11 @@ public class AdaptiveSensingActivity  extends AppCompatActivity {
     public static Context context;
 //    public static final long  Original_UPDATE_INTERVAL_IN_MILLISECONDS = 13000;
 //    public static  long UPDATE_INTERVAL_IN_MILLISECONDS = 13000;
-    public static IntentFilter intentfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
     public static int batteryLevel(){
+        IntentFilter intentfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, ifilter);
         context.getApplicationContext().registerReceiver(broadcastreceiver,intentfilter);
         while(true)
         {
