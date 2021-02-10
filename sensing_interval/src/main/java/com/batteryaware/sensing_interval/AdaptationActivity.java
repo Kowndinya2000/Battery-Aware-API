@@ -185,7 +185,7 @@ public class AdaptationActivity extends Activity {
         this.setUpPolicy_LDF.SLOPE = 2;
         this.setUpPolicy_LDF.BatteryAwareFunction = "Exponential";
     }
-    private void AdaptationPolicy_L_D_F(long INTERVAL, long STEP, String BatteryAwareFunction)
+    protected void AdaptationPolicy_L_D_F(long INTERVAL, long STEP, String BatteryAwareFunction)
     {
         setUpPolicy_LDF.SENSING_INTERVAL = INTERVAL;
         setUpPolicy_LDF.SLOPE = STEP;
